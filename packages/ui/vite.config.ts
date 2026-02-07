@@ -20,6 +20,7 @@ export default defineConfig({
   plugins: [
     vue(),
     dts({
+      tsconfigPath: './tsconfig.build.json',
       entryRoot: 'src',
       outDir: ['dist', 'es', 'lib'],
       insertTypesEntry: true,
@@ -41,7 +42,6 @@ export default defineConfig({
     lib: {
       entry,
       name: 'SmartAntdVue3ui',
-      formats: ['es', 'cjs', 'umd'],
     },
     rollupOptions: {
       external: commonExternal,
@@ -79,19 +79,6 @@ export default defineConfig({
           dir: 'dist',
           entryFileNames: '[name].cjs',
           exports: 'named',
-        },
-        {
-          // dist/ — UMD 格式（CDN / <script> 标签引入）
-          format: 'umd',
-          dir: 'dist',
-          entryFileNames: '[name].umd.js',
-          name: 'SmartAntdVue3ui',
-          exports: 'named',
-          globals: {
-            vue: 'Vue',
-            'ant-design-vue': 'antd',
-            'vue-request': 'VueRequest',
-          },
         },
       ],
     },

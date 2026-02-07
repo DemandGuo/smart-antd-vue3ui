@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
-    "build": "tsx scripts/gen-components.ts && vite build",
+    "build": "tsx scripts/gen-components.ts && vite build && tsx scripts/build-umd.ts",
     "build:types": "vue-tsc -p tsconfig.build.json"
   },
   "type": "module",
@@ -52,9 +52,15 @@
   ],
   "typesVersions": {
     "*": {
-      "resolver": ["es/resolver.d.ts"],
-      "es/*": ["es/*"],
-      "lib/*": ["lib/*"]
+      "resolver": [
+        "es/resolver.d.ts"
+      ],
+      "es/*": [
+        "es/*"
+      ],
+      "lib/*": [
+        "lib/*"
+      ]
     }
   },
   "sideEffects": false

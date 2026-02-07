@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  vite-plugin-dts@4.5.4:
+    hash: f1ec0fde79af06c7417f5e40a79331ea5c1f08d7db49da8c839584d2a7572934
+    path: patches/vite-plugin-dts@4.5.4.patch
+
 importers:
 
   .:
@@ -28,7 +33,7 @@ importers:
         version: 7.3.1(@types/node@25.2.1)(less@4.5.1)(tsx@4.21.0)
       vite-plugin-dts:
         specifier: ^4.5.4
-        version: 4.5.4(@types/node@25.2.1)(rollup@4.57.1)(typescript@5.9.3)(vite@7.3.1(@types/node@25.2.1)(less@4.5.1)(tsx@4.21.0))
+        version: 4.5.4(patch_hash=f1ec0fde79af06c7417f5e40a79331ea5c1f08d7db49da8c839584d2a7572934)(@types/node@25.2.1)(rollup@4.57.1)(typescript@5.9.3)(vite@7.3.1(@types/node@25.2.1)(less@4.5.1)(tsx@4.21.0))
       vue:
         specifier: '>=3.4.0 <4.0.0'
         version: 3.5.27(typescript@5.9.3)
@@ -1898,7 +1903,7 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  vite-plugin-dts@4.5.4(@types/node@25.2.1)(rollup@4.57.1)(typescript@5.9.3)(vite@7.3.1(@types/node@25.2.1)(less@4.5.1)(tsx@4.21.0)):
+  vite-plugin-dts@4.5.4(patch_hash=f1ec0fde79af06c7417f5e40a79331ea5c1f08d7db49da8c839584d2a7572934)(@types/node@25.2.1)(rollup@4.57.1)(typescript@5.9.3)(vite@7.3.1(@types/node@25.2.1)(less@4.5.1)(tsx@4.21.0)):
     dependencies:
       '@microsoft/api-extractor': 7.56.3(@types/node@25.2.1)
       '@rollup/pluginutils': 5.3.0(rollup@4.57.1)

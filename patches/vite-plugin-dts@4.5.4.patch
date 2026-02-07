@@ -1,0 +1,26 @@
+diff --git a/dist/index.cjs b/dist/index.cjs
+index 6c4d9394e50849282da6ed4a1e31b9001584a644..bdf8a1c8ed1a2d2af38cd3b039f03607e48cb345 100644
+--- a/dist/index.cjs
++++ b/dist/index.cjs
+@@ -755,7 +755,7 @@ const fixedCompilerOptions = {
+   emitDeclarationOnly: true,
+   checkJs: false,
+   skipLibCheck: true,
+-  preserveSymlinks: false,
++  preserveSymlinks: true,
+   noEmitOnError: undefined,
+   target: ts__default.ScriptTarget.ESNext
+ };
+diff --git a/dist/index.mjs b/dist/index.mjs
+index 3cd57486b16f8946b4740f16ff431e4e744e3351..eaeb0ef62aa8c035646efd660f1b7287bb7f5372 100644
+--- a/dist/index.mjs
++++ b/dist/index.mjs
+@@ -751,7 +751,7 @@ const fixedCompilerOptions = {
+   emitDeclarationOnly: true,
+   checkJs: false,
+   skipLibCheck: true,
+-  preserveSymlinks: false,
++  preserveSymlinks: true,
+   noEmitOnError: undefined,
+   target: ts.ScriptTarget.ESNext
+ };
