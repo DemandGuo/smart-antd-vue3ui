@@ -1,0 +1,61 @@
+{
+  "name": "smart-antd-vue3ui",
+  "version": "1.1.3",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "tsx scripts/gen-components.ts && vite build",
+    "build:types": "vue-tsc -p tsconfig.build.json"
+  },
+  "type": "module",
+  "main": "lib/index.cjs",
+  "module": "es/index.mjs",
+  "types": "es/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./es/index.d.ts",
+      "import": "./es/index.mjs",
+      "require": "./lib/index.cjs"
+    },
+    "./resolver": {
+      "types": "./es/resolver.d.ts",
+      "import": "./es/resolver.mjs",
+      "require": "./lib/resolver.cjs"
+    },
+    "./es": {
+      "types": "./es/index.d.ts",
+      "import": "./es/index.mjs"
+    },
+    "./lib": {
+      "types": "./lib/index.d.ts",
+      "require": "./lib/index.cjs"
+    },
+    "./dist/*": "./dist/*",
+    "./es/*": "./es/*",
+    "./lib/*": "./lib/*"
+  },
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "ant-design-vue": ">=4.0.0",
+    "vue": ">=3.2.0",
+    "vue-request": "^2.0.4"
+  },
+  "devDependencies": {
+    "ant-design-vue": "^4.0.0"
+  },
+  "files": [
+    "dist",
+    "es",
+    "lib"
+  ],
+  "typesVersions": {
+    "*": {
+      "resolver": ["es/resolver.d.ts"],
+      "es/*": ["es/*"],
+      "lib/*": ["lib/*"]
+    }
+  },
+  "sideEffects": false
+}

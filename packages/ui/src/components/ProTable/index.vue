@@ -1,18 +1,30 @@
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue'
 import { usePagination } from 'vue-request'
-import ACard from 'ant-design-vue/es/card'
-import AForm from 'ant-design-vue/es/form'
-import AFormItem from 'ant-design-vue/es/form/FormItem'
-import { Row as ARow, Col as ACol } from 'ant-design-vue/es/grid'
-import AInput from 'ant-design-vue/es/input'
-import ASelect from 'ant-design-vue/es/select'
-import ADatePicker from 'ant-design-vue/es/date-picker'
-import AButton from 'ant-design-vue/es/button'
-import ASpace from 'ant-design-vue/es/space'
-import ATable from 'ant-design-vue/es/table'
+// import ACard from 'ant-design-vue/es/card'
+// import AForm from 'ant-design-vue/es/form'
+// import AFormItem from 'ant-design-vue/es/form/FormItem'
+// import { Row as ARow, Col as ACol } from 'ant-design-vue/es/grid'
+// import AInput from 'ant-design-vue/es/input'
+// import ASelect from 'ant-design-vue/es/select'
+// import ADatePicker from 'ant-design-vue/es/date-picker'
+// import AButton from 'ant-design-vue/es/button'
+// import ASpace from 'ant-design-vue/es/space'
+// import ATable from 'ant-design-vue/es/table'
 
-const ARangePicker = ADatePicker.RangePicker
+// const ARangePicker = ADatePicker.RangePicker
+import Card from 'ant-design-vue/es/card'
+import Form from 'ant-design-vue/es/form'
+import FormItem from 'ant-design-vue/es/form/FormItem'
+import { Row, Col } from 'ant-design-vue/es/grid'
+import Input from 'ant-design-vue/es/input'
+import Select from 'ant-design-vue/es/select'
+import DatePicker from 'ant-design-vue/es/date-picker'
+import Button from 'ant-design-vue/es/button'
+import Space from 'ant-design-vue/es/space'
+import Table from 'ant-design-vue/es/table'
+
+const RangePicker = DatePicker.RangePicker
 import type { ProTableProps } from './types'
 
 const props = withDefaults(defineProps<ProTableProps>(), {
@@ -95,44 +107,44 @@ const handleTableChange = (page: any) => {
 </script>
 <template>
   <!-- 搜索区 -->
-  <ACard class="search-wrapper">
-    <AForm ref="formRef" :model="formState">
-      <ARow :gutter="[16, 16]">
-        <ACol :span="6" v-for="item in searchConfig" :key="item.key">
-          <AFormItem :name="item.key">
+  <Card class="search-wrapper">
+    <Form ref="formRef" :model="formState">
+      <Row :gutter="[16, 16]">
+        <Col :span="6" v-for="item in searchConfig" :key="item.key">
+          <FormItem :name="item.key">
             <component v-if="item.type === 'component'" :is="item.component" v-model="formState[item.key]"
               v-bind="item.props" />
-            <AInput v-else-if="item.type === 'input'" v-model:value="formState[item.key]" allow-clear
+            <Input v-else-if="item.type === 'input'" v-model:value="formState[item.key]" allow-clear
               v-bind="item.props" />
-            <ASelect v-else-if="item.type === 'select'" v-model:value="formState[item.key]" allow-clear
+            <Select v-else-if="item.type === 'select'" v-model:value="formState[item.key]" allow-clear
               v-bind="item.props" />
-            <ARangePicker v-else-if="item.type === 'dateRange'" v-model:value="formState[item.key]"
+            <RangePicker v-else-if="item.type === 'dateRange'" v-model:value="formState[item.key]"
               v-bind="item.props" />
-          </AFormItem>
-        </ACol>
-      </ARow>
+          </FormItem>
+        </Col>
+      </Row>
 
-      <ARow justify="space-between">
-        <ACol>
+      <Row justify="space-between">
+        <Col>
           <slot name="extra" />
-        </ACol>
-        <ACol>
-          <ASpace>
-            <AButton type="primary" @click="onSearch">查询</AButton>
-            <AButton @click="onReset">重置</AButton>
-          </ASpace>
-        </ACol>
-      </ARow>
-    </AForm>
-  </ACard>
+        </Col>
+        <Col>
+          <Space>
+            <Button type="primary" @click="onSearch">查询</Button>
+            <Button @click="onReset">重置</Button>
+          </Space>
+        </Col>
+      </Row>
+    </Form>
+  </Card>
 
   <!-- 表格区 -->
-  <ACard style="margin-top: 16px">
-    <ATable :loading="loading" :columns="columns" :data-source="list" :pagination="pagination" :scroll="tableScroll"
+  <Card style="margin-top: 16px">
+    <Table :loading="loading" :columns="columns" :data-source="list" :pagination="pagination" :scroll="tableScroll"
       @change="handleTableChange">
       <template #bodyCell="{ column, record }">
         <slot v-if="column?.key" :name="column.key" :record="record" :column="column" />
       </template>
-    </ATable>
-  </ACard>
+    </Table>
+  </Card>
 </template>
