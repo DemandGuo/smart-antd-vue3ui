@@ -5,7 +5,13 @@
     "emitDeclarationOnly": true,
     "outDir": "dist",
     "skipLibCheck": true,
-    "preserveSymlinks": true
+    "preserveSymlinks": true,
+    "noUncheckedSideEffectImports": false
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": [
+    "src/style.ts",
+    "src/styles/**",
+    "src/**/style/**"
+  ]
 }

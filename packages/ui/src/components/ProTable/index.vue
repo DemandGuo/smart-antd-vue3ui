@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue'
 import { usePagination } from 'vue-request'
+import './style/index.less'
 // import ACard from 'ant-design-vue/es/card'
 // import AForm from 'ant-design-vue/es/form'
 // import AFormItem from 'ant-design-vue/es/form/FormItem'
@@ -107,7 +108,7 @@ const handleTableChange = (page: any) => {
 </script>
 <template>
   <!-- 搜索区 -->
-  <Card class="search-wrapper">
+  <Card class="smart-pro-table-wrapper">
     <Form ref="formRef" :model="formState">
       <Row :gutter="[16, 16]">
         <Col :span="6" v-for="item in searchConfig" :key="item.key">
@@ -139,7 +140,7 @@ const handleTableChange = (page: any) => {
   </Card>
 
   <!-- 表格区 -->
-  <Card style="margin-top: 16px">
+  <Card class="smart-pro-table-table-card">
     <Table :loading="loading" :columns="columns" :data-source="list" :pagination="pagination" :scroll="tableScroll"
       @change="handleTableChange">
       <template #bodyCell="{ column, record }">

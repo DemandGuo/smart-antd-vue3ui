@@ -14,6 +14,7 @@ const commonExternal = ['vue', /^ant-design-vue/, 'vue-request']
 const entry = {
   index: path.resolve(__dirname, 'src/index.ts'),
   resolver: path.resolve(__dirname, 'src/resolver.ts'),
+  style: path.resolve(__dirname, 'src/style.ts'),
 }
 
 export default defineConfig({
@@ -43,6 +44,7 @@ export default defineConfig({
       entry,
       name: 'SmartAntdVue3ui',
     },
+    cssCodeSplit: true,
     rollupOptions: {
       external: commonExternal,
       output: [
@@ -55,6 +57,13 @@ export default defineConfig({
           preserveModules: true,
           preserveModulesRoot: 'src',
           exports: 'named',
+          // 组件级 CSS 保留在各自目录下
+          assetFileNames: (assetInfo) => {
+            if (assetInfo.names?.[0]?.endsWith('.css')) {
+              return '[name].[ext]'
+            }
+            return 'assets/[name]-[hash].[ext]'
+          },
         },
         {
           // lib/ — CJS 格式，保留模块结构
@@ -65,6 +74,12 @@ export default defineConfig({
           preserveModules: true,
           preserveModulesRoot: 'src',
           exports: 'named',
+          assetFileNames: (assetInfo) => {
+            if (assetInfo.names?.[0]?.endsWith('.css')) {
+              return '[name].[ext]'
+            }
+            return 'assets/[name]-[hash].[ext]'
+          },
         },
         {
           // dist/ — 打包合并的版本（全量引入）

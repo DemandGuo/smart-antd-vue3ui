@@ -12,12 +12,15 @@
   "main": "lib/index.cjs",
   "module": "es/index.mjs",
   "types": "es/index.d.ts",
+  "style": "dist/style.css",
   "exports": {
     ".": {
       "types": "./es/index.d.ts",
       "import": "./es/index.mjs",
       "require": "./lib/index.cjs"
     },
+    "./style.css": "./dist/style.css",
+    "./dist/style.css": "./dist/style.css",
     "./resolver": {
       "types": "./es/resolver.d.ts",
       "import": "./es/resolver.mjs",
@@ -63,5 +66,13 @@
       ]
     }
   },
-  "sideEffects": false
+  "sideEffects": [
+    "**/*.css",
+    "**/*.less",
+    "**/style/*",
+    "**/style.ts",
+    "**/style.mjs",
+    "**/style.cjs",
+    "src/style.ts"
+  ]
 }

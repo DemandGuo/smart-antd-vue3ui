@@ -26,10 +26,16 @@ export interface SmartAntdVue3uiResolverOptions {
    * 所有以该前缀开头的 PascalCase 组件名都会被自动解析
    */
   prefix?: string
+  /**
+   * 是否自动引入组件样式，默认 true
+   * - true:  自动引入 es/components/XXX/style（按需 CSS）
+   * - false: 不自动引入，需手动引入
+   */
+  importStyle?: boolean
 }
 
 export function SmartAntdVue3uiResolver(options: SmartAntdVue3uiResolverOptions = {}) {
-  const { importFrom = 'smart-antd-vue3ui', prefix = 'Pro' } = options
+  const { importFrom = 'smart-antd-vue3ui', prefix = 'Pro', importStyle = true } = options
 
   return {
     type: 'component' as const,
@@ -38,6 +44,9 @@ export function SmartAntdVue3uiResolver(options: SmartAntdVue3uiResolverOptions 
         return {
           name,
           from: importFrom,
+          sideEffects: importStyle
+            ? [`${importFrom}/es/components/${name}/style`]
+            : undefined,
         }
       }
     },
