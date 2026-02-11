@@ -30,9 +30,9 @@ jobs:
         run: pnpm install
 
       - name: Build package
-        run: pnpm --filter @cool/smart-antd-vue3ui build
+        run: pnpm --filter @zxcore/smart-antd-vue3ui build
 
       - name: Publish to npm
-        run: pnpm --filter @cool/smart-antd-vue3ui publish --access public --no-git-checks
+        run: pnpm --filter @zxcore/smart-antd-vue3ui publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
