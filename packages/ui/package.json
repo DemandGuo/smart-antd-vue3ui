@@ -1,12 +1,12 @@
 {
   "name": "@zxcore/smart-antd-vue3ui",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
     "build": "tsx scripts/gen-components.ts && vite build && tsx scripts/build-umd.ts",
-    "tags": "pnpm version patch --tag-version-prefix \"ui-v\""
+    "tags": "node ../../scripts/release-tag.js"
   },
   "type": "module",
   "main": "lib/index.cjs",
