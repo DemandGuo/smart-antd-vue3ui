@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { execSync } from 'child_process'
 
 // 👇 ESM 下没有 __dirname，自己补
 const __filename = fileURLToPath(import.meta.url)
@@ -19,6 +20,13 @@ const entry = {
 
 export default defineConfig({
   plugins: [
+    {
+      name: 'run-vue-tsc',
+      apply: 'build',
+      buildStart() {
+        execSync('vue-tsc -p tsconfig.build.json', { stdio: 'inherit' })
+      },
+    },
     vue(),
     dts({
       tsconfigPath: './tsconfig.build.json',
