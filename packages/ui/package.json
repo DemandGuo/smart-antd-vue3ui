@@ -1,11 +1,11 @@
 {
   "name": "@zxcore/smart-antd-vue3ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
-    "build": "tsx scripts/gen-components.ts && vite build && tsx scripts/build-umd.ts"   
+    "build": "tsx scripts/gen-components.ts && vite build && tsx scripts/build-umd.ts"
   },
   "type": "module",
   "main": "lib/index.cjs",
