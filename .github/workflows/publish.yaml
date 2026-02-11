@@ -32,9 +32,6 @@ jobs:
       - name: Build package
         run: pnpm --filter ui build
 
-      - name: Build types
-        run: pnpm --filter @cool/smart-antd-vue3ui build:types
-
       - name: Publish to npm
         run: pnpm --filter @cool/smart-antd-vue3ui publish --access public --no-git-checks
         env:
