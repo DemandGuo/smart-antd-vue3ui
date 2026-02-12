@@ -18,6 +18,8 @@ smart-antd-vue3ui/
 │   │   ├── src/
 │   │   │   ├── index.ts            # 库入口（导出所有组件 + install 方法）
 │   │   │   ├── resolver.ts         # unplugin-vue-components 自定义 Resolver
+│   │   │   ├── hooks/              # hooks（入口 index.ts 自动生成，子目录 index.ts 也自动生成）
+│   │   │   ├── utils/              # utils（入口 index.ts 自动生成，子目录 index.ts 也自动生成）
 │   │   │   └── components/
 │   │   │       ├── index.ts        # ⚡ 自动生成的组件导出文件
 │   │   │       └── ProTable/       # 组件目录（PascalCase 命名）
@@ -25,7 +27,8 @@ smart-antd-vue3ui/
 │   │   │           ├── index.vue
 │   │   │           └── types.ts
 │   │   ├── scripts/
-│   │   │   └── gen-components.ts   # 🤖 自动扫描组件并生成 components/index.ts
+│   │   │   ├── gen-components.ts   # 🤖 自动生成 barrel（components/hooks/utils）入口文件
+│   │   │   └── gen-barrel.ts       # 🧱 通用 barrel 生成工具（被 gen-components.ts 调用）
 │   │   ├── dist/                   # 构建产物
 │   │   ├── vite.config.ts          # Vite 库模式构建配置
 │   │   └── package.json
@@ -71,6 +74,14 @@ app.mount('#app')
 
 ```ts
 import { ProTable } from 'smart-antd-vue3ui'
+```
+
+也支持导入 hooks / utils：
+
+```ts
+import { useUpload } from 'smart-antd-vue3ui'
+import { useDebounce } from 'smart-antd-vue3ui/utils'
+import { usePagedSelect } from 'smart-antd-vue3ui/hooks'
 ```
 
 ### 方式三：自动按需引入（推荐）
@@ -212,22 +223,23 @@ const fetchData = (params: any) => {
 
 ## 自动化机制详解
 
-### 1. 组件导出自动生成
+### 1. barrel 导出自动生成（components / hooks / utils）
 
 [scripts/gen-components.ts](packages/ui/scripts/gen-components.ts) 会在每次 `pnpm build` 前自动运行：
 
 ```
 pnpm build
-  → tsx scripts/gen-components.ts   （扫描 src/components/ 子目录）
+  → tsx scripts/gen-components.ts   （生成 components/hooks/utils 的 index.ts）
   → vite build                      （构建库产物）
 ```
 
 **工作原理：**
-- 扫描 `src/components/` 下所有子目录
-- 过滤出包含 `index.ts` 或 `index.vue` 的有效组件目录
-- 自动生成 `src/components/index.ts`，内容为所有组件的 `export { default as XXX }` 语句
+- 通过 [scripts/gen-barrel.ts](packages/ui/scripts/gen-barrel.ts) 的通用逻辑，生成以下入口文件：
+  - `src/components/index.ts`
+  - `src/hooks/index.ts`（同时为 hooks 的子目录生成 `index.ts`）
+  - `src/utils/index.ts`（同时为 utils 的子目录生成 `index.ts`）
 
-**效果：** 新增组件只需在 `src/components/` 下创建目录，无需手动修改导出文件。
+**效果：** 新增组件 / hooks / utils 只需新增文件或目录，不需要手动维护任何 `index.ts`。
 
 ### 2. Resolver 前缀匹配
 
@@ -257,6 +269,15 @@ packages/ui/src/components/
 
 然后运行 `pnpm build`，一切自动完成。
 
+### 4. 子路径导出（hooks / utils）
+
+UI 包在 `packages/ui/package.json` 中提供了子路径导出，便于只引入某一类能力：
+
+```ts
+import { usePagedSelect } from 'smart-antd-vue3ui/hooks'
+import { useDebounce } from 'smart-antd-vue3ui/utils'
+```
+
 ## 构建产物
 
 构建后 `dist/` 目录包含：
@@ -283,7 +304,7 @@ packages/ui/src/components/
 pnpm install
 
 # 构建组件库
-pnpm build
+pnpm -f @zxcore/ build tags
 
 # 启动 Playground 开发调试
 pnpm dev

@@ -8,6 +8,7 @@ const router = useRouter()
 
 const components = [
   { name: 'ProTable', path: '/pro-table', desc: '高级表格，集成搜索、分页、请求' },
+  { name: 'ProSelectPage', path: '/pro-select-page', desc: '远程分页下拉选择器，支持搜索、滚动加载、新增' },
   // 新增组件在此添加即可
 ]
 </script>

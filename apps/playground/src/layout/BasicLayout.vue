@@ -3,7 +3,7 @@ import { useRouter } from 'vue-router'
 import Layout from 'ant-design-vue/es/layout'
 import Menu from 'ant-design-vue/es/menu'
 import { h, ref } from 'vue'
-import { TableOutlined, HomeOutlined } from '@ant-design/icons-vue'
+import { TableOutlined, HomeOutlined, SelectOutlined } from '@ant-design/icons-vue'
 
 const LayoutSider = Layout.Sider
 const LayoutContent = Layout.Content
@@ -15,6 +15,7 @@ const selectedKeys = ref<string[]>([router.currentRoute.value.path])
 const menuItems = [
   { key: '/', label: '首页', icon: () => h(HomeOutlined) },
   { key: '/pro-table', label: 'ProTable', icon: () => h(TableOutlined) },
+  { key: '/pro-select-page', label: 'ProSelectPage', icon: () => h(SelectOutlined) },
 ]
 
 const onMenuClick = ({ key }: { key: string }) => {

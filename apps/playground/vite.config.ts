@@ -19,6 +19,7 @@ export default defineConfig({
     alias: {
       // 直接指向 UI 包源码，改样式即时热更新
       'smart-antd-vue3ui': path.resolve(__dirname, '../../packages/ui/src'),
+      '@': path.resolve(__dirname, 'src'),
     },
   },
   server: {

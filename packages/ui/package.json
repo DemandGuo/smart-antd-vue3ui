@@ -19,6 +19,16 @@
       "import": "./es/index.mjs",
       "require": "./lib/index.cjs"
     },
+    "./hooks": {
+      "types": "./es/hooks/index.d.ts",
+      "import": "./es/hooks/index.mjs",
+      "require": "./lib/hooks/index.cjs"
+    },
+    "./utils": {
+      "types": "./es/utils/index.d.ts",
+      "import": "./es/utils/index.mjs",
+      "require": "./lib/utils/index.cjs"
+    },
     "./style.css": "./dist/style.css",
     "./dist/style.css": "./dist/style.css",
     "./resolver": {
@@ -57,6 +67,12 @@
     "*": {
       "resolver": [
         "es/resolver.d.ts"
+      ],
+      "hooks": [
+        "es/hooks/index.d.ts"
+      ],
+      "utils": [
+        "es/utils/index.d.ts"
       ],
       "es/*": [
         "es/*"

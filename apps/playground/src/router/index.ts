@@ -15,6 +15,11 @@ const routes: RouteRecordRaw[] = [
     name: 'ProTable',
     component: () => import('../views/ProTableDemo.vue'),
   },
+  {
+    path: '/pro-select-page',
+    name: 'ProSelectPage',
+    component: () => import('../views/ProSelectPageDemo.vue'),
+  },
 ]
 
 const router = createRouter({

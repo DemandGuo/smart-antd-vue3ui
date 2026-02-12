@@ -2,6 +2,8 @@ import type { Component } from 'vue'
 import * as components from './components'
 
 export * from './components'
+export * from './hooks'
+export * from './utils'
 
 const smartAntdVue3ui = {
   install(app: any) {
