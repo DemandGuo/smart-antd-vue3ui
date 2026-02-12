@@ -7,7 +7,7 @@ import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/reset.css'
 
 // 因为 resolve.alias 指向了源码，这里等价于直接引入 src/styles/index.less
-import 'smart-antd-vue3ui/styles/index.less'
+import '@zxcore/smart-antd-vue3ui/dist/index.css'
 
 import App from './App.vue'
 import router from './router'

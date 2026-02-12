@@ -12,13 +12,16 @@
   "main": "lib/index.cjs",
   "module": "es/index.mjs",
   "types": "es/index.d.ts",
-  "style": "dist/style.css",
+  "style": "es/styles/index.css",
   "exports": {
     ".": {
       "types": "./es/index.d.ts",
       "import": "./es/index.mjs",
       "require": "./lib/index.cjs"
     },
+    "./style": "./es/styles/index.css",
+    "./styles": "./es/styles/index.css",
+    "./styles/*": "./dist/styles/*",
     "./hooks": {
       "types": "./es/hooks/index.d.ts",
       "import": "./es/hooks/index.mjs",
@@ -29,7 +32,7 @@
       "import": "./es/utils/index.mjs",
       "require": "./lib/utils/index.cjs"
     },
-    "./style.css": "./dist/style.css",
+    "./style.css": "./es/styles/index.css",
     "./dist/style.css": "./dist/style.css",
     "./resolver": {
       "types": "./es/resolver.d.ts",
@@ -46,7 +49,8 @@
     },
     "./dist/*": "./dist/*",
     "./es/*": "./es/*",
-    "./lib/*": "./lib/*"
+    "./lib/*": "./lib/*",
+    "./src/*": "./src/*"
   },
   "author": "",
   "license": "ISC",

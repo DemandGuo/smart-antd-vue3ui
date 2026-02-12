@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ProSelectPage } from 'smart-antd-vue3ui'
+import { ProSelectPage } from '@zxcore/smart-antd-vue3ui'
 import { ref } from 'vue'
 import Card from 'ant-design-vue/es/card'
 import Divider from 'ant-design-vue/es/divider'

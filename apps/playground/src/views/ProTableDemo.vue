@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ProTable } from 'smart-antd-vue3ui'
+import { ProTable } from '@zxcore/smart-antd-vue3ui'
 
 // 模拟接口
 const request = (params: any) => {
